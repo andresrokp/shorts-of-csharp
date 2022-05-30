@@ -30,6 +30,7 @@ namespace CajeroAutomatico
         {
             this.saldo -= valorTransf;
             cuentaDestino.saldo += valorTransf;
+            Console.WriteLine("Su nuevo saldo es : $"+saldo);
         }
 
         internal void retirarDinero()
@@ -43,5 +44,6 @@ namespace CajeroAutomatico
             }
             else Console.WriteLine("Saldo insuficiente");
         }
+
     }
 }
