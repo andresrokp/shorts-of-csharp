@@ -11,9 +11,9 @@ namespace CajeroAutomatico
         public int id;
         public string password;
         public int puntosC;
-        public string saldo;
+        public int saldo;
 
-        public Cuenta(int id, string password, int puntosC, string saldo)
+        public Cuenta(int id, string password, int puntosC, int saldo)
         {
             this.id = id;
             this.password = password;
@@ -21,8 +21,14 @@ namespace CajeroAutomatico
             this.saldo = saldo;
         }
 
+        public int getSaldo()
+        {
+            return saldo;
+        }
 
-
-        
+        internal void doTransfer(Cuenta cuentaDestino)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

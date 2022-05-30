@@ -13,7 +13,33 @@ namespace CajeroAutomatico
 
         public Navegador()
         {
-            
+            Cuenta c1 = new Cuenta(100, "pass1", 10000, 1000000);
+            Cuenta c2 = new Cuenta(200, "pass2", 20000, 1000000);
+            Cuenta c3 = new Cuenta(300, "pass3", 30000, 1000000);
+            Cuenta c4 = new Cuenta(400, "pass4", 40000, 1000000);
+            Cuenta c5 = new Cuenta(500, "pass5", 50000, 1000000);
+        }
+
+        private void transferirDinero()
+        {
+            try
+            {
+                Console.WriteLine("Inserte el número de cuenta destino");
+                int numCuentaDestino = Convert.ToInt32(Console.ReadLine().Trim(' '));
+                Cuenta cuentaDestino = listaCuentas[numCuentaDestino];
+                if (cuentaDestino == null) Console.WriteLine("Cuenta no válida");
+                else
+                {
+                    Console.WriteLine("Inserte el valor a transferir");
+                    int valorTransf = Convert.ToInt32(Console.ReadLine().Trim(' '));
+                    if (cuentaActiva.saldo > valorTransf) cuentaActiva.doTransfer(cuentaDestino);
+                    else Console.WriteLine("saldo insuficiente");
+                }
+            }
+            catch
+            {
+                Console.WriteLine("inserte un valor válido");
+            }
         }
         public void navegarCuenta()
         {
@@ -24,8 +50,8 @@ namespace CajeroAutomatico
                 Console.WriteLine("1. Consultar saldo");
                 Console.WriteLine("2. Retiros");
                 Console.WriteLine("3. Transferencia");
-                Console.WriteLine("3. Consultar puntos ViveColombia");
-                Console.WriteLine("3. Canjear puntos ViveColombia");
+                Console.WriteLine("4. Consultar puntos ViveColombia");
+                Console.WriteLine("5. Canjear puntos ViveColombia");
                 Console.WriteLine("9. Salir");
                 seleccion = 0;
                 
@@ -35,21 +61,14 @@ namespace CajeroAutomatico
                         Console.WriteLine("Su saldo es : " + cuentaActiva.getSaldo());
                         break;
                     case 2:
-                        try
-                        {
-                            cuentaDestino = Convert.ToInt32(Console.ReadLine().Trim(' '));
-                        }
-                        catch
-                        {
-                            Console.WriteLine("inserte un valor válido");
-                        }
-                        
-                        cuentaActiva.doTransfer();
                         break;
                     case 3:
-                        cuentaActiva.getPuntosC();
+                        transferirDinero();
                         break;
                     case 4:
+                        cuentaActiva.getPuntosC();
+                        break;
+                    case 5:
                         cuentaActiva.canjearPuntosC();
                         break;
                     case 9:
