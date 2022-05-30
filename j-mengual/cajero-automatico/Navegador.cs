@@ -13,11 +13,18 @@ namespace CajeroAutomatico
 
         public Navegador()
         {
+            this.listaCuentas = new Dictionary<int, Cuenta>();
             Cuenta c1 = new Cuenta(100, "pass1", 10000, 1000000);
-            Cuenta c2 = new Cuenta(200, "pass2", 20000, 1000000);
-            Cuenta c3 = new Cuenta(300, "pass3", 30000, 1000000);
-            Cuenta c4 = new Cuenta(400, "pass4", 40000, 1000000);
-            Cuenta c5 = new Cuenta(500, "pass5", 50000, 1000000);
+            Cuenta c2 = new Cuenta(200, "pass2", 20000, 2000000);
+            Cuenta c3 = new Cuenta(300, "pass3", 30000, 3000000);
+            Cuenta c4 = new Cuenta(400, "pass4", 40000, 4000000);
+            Cuenta c5 = new Cuenta(500, "pass5", 50000, 5000000);
+            listaCuentas[c1.id] = c1;
+            listaCuentas[c2.id] = c2;
+            listaCuentas[c3.id] = c3;
+            listaCuentas[c4.id] = c4;
+            listaCuentas[c5.id] = c5;
+
         }
 
         private void transferirDinero()
@@ -53,8 +60,7 @@ namespace CajeroAutomatico
                 Console.WriteLine("4. Consultar puntos ViveColombia");
                 Console.WriteLine("5. Canjear puntos ViveColombia");
                 Console.WriteLine("9. Salir");
-                seleccion = 0;
-                
+                seleccion = Convert.ToInt32(Console.ReadLine().Trim(' '));
                 switch (seleccion)
                 {
                     case 1:
@@ -66,10 +72,10 @@ namespace CajeroAutomatico
                         transferirDinero();
                         break;
                     case 4:
-                        cuentaActiva.getPuntosC();
+                        // cuentaActiva.getPuntosC();
                         break;
                     case 5:
-                        cuentaActiva.canjearPuntosC();
+                        // cuentaActiva.canjearPuntosC();
                         break;
                     case 9:
                         Console.WriteLine("Muchas gracias");
@@ -89,6 +95,21 @@ namespace CajeroAutomatico
             {
                 Console.WriteLine("\n\n----------------------------------\n\nIngrese su número de cuenta");
                 numCuenta = Convert.ToInt32(Console.ReadLine().Trim(' '));
+                Console.WriteLine("Ingrese contraseña");
+                string pass = Console.ReadLine();
+                try
+                {
+                    if (listaCuentas[numCuenta].password == pass)
+                    {
+                        cuentaActiva = listaCuentas[numCuenta];
+                        navegarCuenta();
+                    }
+                    else Console.WriteLine("Valores inválidos");
+                }
+                catch
+                {
+                    Console.WriteLine("Valores inválidos");
+                }
             }
             while (true);
         }
