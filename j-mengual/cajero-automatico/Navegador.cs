@@ -37,15 +37,15 @@ namespace CajeroAutomatico
             {
                 Console.WriteLine("Inserte el número de cuenta destino");
                 int numCuentaDestino = Convert.ToInt32(Console.ReadLine().Trim(' '));
-                Cuenta cuentaDestino = listaCuentas[numCuentaDestino];
-                if (cuentaDestino == null) Console.WriteLine("Cuenta no válida");
-                else
+                try
                 {
+                    Cuenta cuentaDestino = listaCuentas[numCuentaDestino];
                     Console.WriteLine("Inserte el valor a transferir");
                     int valorTransf = Convert.ToInt32(Console.ReadLine().Trim(' '));
-                    if (cuentaActiva.saldo > valorTransf) cuentaActiva.doTransfer(cuentaDestino);
+                    if (cuentaActiva.saldo > valorTransf) cuentaActiva.doTransfer(cuentaDestino, valorTransf);
                     else Console.WriteLine("saldo insuficiente");
                 }
+                catch { Console.WriteLine("Cuenta no válida"); }
             }
             catch
             {
@@ -77,7 +77,7 @@ namespace CajeroAutomatico
                         transferirDinero();
                         break;
                     case 4:
-                        // cuentaActiva.getPuntosC();
+                        Console.WriteLine("Su saldo es : " + cuentaActiva.puntosC);
                         break;
                     case 5:
                         // cuentaActiva.canjearPuntosC();

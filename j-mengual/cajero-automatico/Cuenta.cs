@@ -26,9 +26,10 @@ namespace CajeroAutomatico
             return saldo;
         }
 
-        internal void doTransfer(Cuenta cuentaDestino)
+        internal void doTransfer(Cuenta cuentaDestino, int valorTransf)
         {
-            throw new NotImplementedException();
+            this.saldo -= valorTransf;
+            cuentaDestino.saldo += valorTransf;
         }
 
         internal void retirarDinero()
