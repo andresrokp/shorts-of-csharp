@@ -27,6 +27,10 @@ namespace CajeroAutomatico
 
         }
 
+        private void retirarDinero()
+        {
+            cuentaActiva.retirarDinero();
+        }
         private void transferirDinero()
         {
             try
@@ -67,6 +71,7 @@ namespace CajeroAutomatico
                         Console.WriteLine("Su saldo es : " + cuentaActiva.getSaldo());
                         break;
                     case 2:
+                        retirarDinero();
                         break;
                     case 3:
                         transferirDinero();

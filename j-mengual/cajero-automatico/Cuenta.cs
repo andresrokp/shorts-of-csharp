@@ -30,5 +30,17 @@ namespace CajeroAutomatico
         {
             throw new NotImplementedException();
         }
+
+        internal void retirarDinero()
+        {
+            Console.WriteLine("Ingrese el valor a retirar");
+            int retiro = Convert.ToInt32(Console.ReadLine().Trim(' '));
+            if (retiro <= saldo)
+            {
+                saldo -= retiro;
+                Console.WriteLine("Su nuevo saldo es : $" + saldo);
+            }
+            else Console.WriteLine("Saldo insuficiente");
+        }
     }
 }
